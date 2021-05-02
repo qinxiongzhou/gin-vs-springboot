@@ -10,10 +10,11 @@
 
 先透露下对比报告：
 
----|---|---|---|---
-   | qps | CPU | 内存 | 包大小
-gin| 14900 | 150% | 0.4% | 9M
-springboot|11536| 143% | 12% | 24M
+
+|   | qps | CPU | 内存 | 包大小
+|---|---|---|---|---
+|gin| 14900 | 150% | 0.4% | 9M 
+|springboot|11536| 143% | 12% | 24M 
 
 ## 2 环境准备
 - 2台2C4G的云主机（172.16.60.211，172.16.60.210），这个自己到阿里云上购买即可。一小时0.8元左右。
@@ -47,14 +48,14 @@ func main() {
 - set GOOS=linux #windows环境需要设置GOOS，才能build成linux环境的可运行二进制文件
 - go build http_gin.go
 
-![gin_compiler.png](/source/golang/gin vs springboot/gin_compiler.png)
+![gin_compiler.png](/images/gin_compiler.png)
 
 上传linux环境：
 
 - 修改成可执行文件 chmod +x http_gin
 - 运行 ./http_gin &
 
-![gin_run.png](/source/golang/gin vs springboot/gin_run.png)
+![gin_run.png](/images/gin_run.png)
 
 
 
@@ -95,7 +96,7 @@ class Result{
 运行：
 - java -jar demo-0.0.1-SNAPSHOT.jar &
 
-![springboot_run.png](/source/golang/gin vs springboot/springboot_run.png)
+![springboot_run.png](/images/springboot_run.png)
 
 
 ## 4 benchmark
@@ -126,7 +127,7 @@ Transfer rate:          2051.66 [Kbytes/sec] received
 
 benchmark过程中，服务器CPU、内存状态：
 
-![gin_cpu_mem.png](/source/golang/gin vs springboot/gin_cpu_mem.png)
+![gin_cpu_mem.png](/images/gin_cpu_mem.png)
 
 ### 4.2 springboot benchmark
 ab -c 10 -n 200000 http://172.16.60.211:8090/ping
@@ -147,14 +148,14 @@ Transfer rate:          1385.75 [Kbytes/sec] received
 
 benchmark过程中，服务器CPU、内存状态：
 
-![springboot_cpu_mem.png](/source/golang/gin vs springboot/springboot_cpu_mem.png)
+![springboot_cpu_mem.png](/images/springboot_cpu_mem.png)
 
 ### 4.3 对比
 
----|---|---|---|---
-   | qps | CPU | 内存 | 包大小
-gin| 14900 | 150% | 0.4% | 9M
-springboot|11536| 143% | 12% | 24M
+|   | qps | CPU | 内存 | 包大小
+|---|---|---|---|---
+|gin| 14900 | 150% | 0.4% | 9M
+|springboot|11536| 143% | 12% | 24M
 
 结论：
 - qps上，gin 比 springboot 高出1.3倍。别看只有1.3倍，如果公司现在有10000台服务器呢？
